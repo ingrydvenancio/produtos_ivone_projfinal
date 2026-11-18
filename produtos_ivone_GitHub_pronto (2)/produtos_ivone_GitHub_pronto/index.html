@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-colorblind="none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos Ivone | Beleza, Perfumaria & Cosméticos - Black Friday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Filtros SVG para Daltonismo (Protanopia, Deuteranopia, Tritanopia, Acromatopsia) -->
+    <svg class="svg-filters" aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <defs>
+            <filter id="protanopia">
+                <feColorMatrix type="matrix" values="0.567, 0.433, 0,     0, 0
+                                                     0.558, 0.442, 0,     0, 0
+                                                     0,     0.242, 0.758, 0, 0
+                                                     0,     0,     0,     1, 0"/>
+            </filter>
+            <filter id="deuteranopia">
+                <feColorMatrix type="matrix" values="0.625, 0.375, 0,   0, 0
+                                                     0.7,   0.3,   0,   0, 0
+                                                     0,     0.3,   0.7, 0, 0
+                                                     0,     0,     0,   1, 0"/>
+            </filter>
+            <filter id="tritanopia">
+                <feColorMatrix type="matrix" values="0.95, 0.05,  0,     0, 0
+                                                     0,    0.433, 0.567, 0, 0
+                                                     0,    0.475, 0.525, 0, 0
+                                                     0,    0,     0,     1, 0"/>
+            </filter>
+            <filter id="achromatopsia">
+                <feColorMatrix type="matrix" values="0.299, 0.587, 0.114, 0, 0
+                                                     0.299, 0.587, 0.114, 0, 0
+                                                     0.299, 0.587, 0.114, 0, 0
+                                                     0,     0,     0,     1, 0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Barra Superior Black Friday -->
+    <div class="top-promo-bar" role="region" aria-label="Aviso de Promoção Black Friday">
+        <div class="container top-promo-inner">
+            <span class="bf-badge">BLACK FRIDAY IVONE</span>
+            <p>Até <strong>70% OFF</strong> em toda linha exclusiva + Frete Grátis acima de R$ 99! <em>"Não precisa ir até Bed-Stuy para ficar diva!"</em></p>
+            <div class="countdown" id="bf-countdown" aria-label="Contagem regressiva da oferta">04h : 32m : 19s</div>
+        </div>
+    </div>
+
+    <!-- Cabeçalho Principal & Menu -->
+    <header class="main-header" id="main-header">
+        <div class="container header-top">
+            <a href="#" class="brand-logo" aria-label="Produtos Ivone Página Inicial">
+                <span class="logo-crown">✦</span>
+                <div class="logo-text">
+                    <strong>PRODUTOS IVONE</strong>
+                    <small>BED-STUY • PARIS • SÃO PAULO</small>
+                </div>
+            </a>
+
+            <div class="search-bar" role="search">
+                <input type="text" id="search-input" placeholder="Busque por Batom Bafo, Creme Anti-Estresse da Rochelle..." aria-label="Buscar produtos">
+                <button type="button" id="search-btn" aria-label="Pesquisar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </button>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="action-btn" id="theme-toggle" aria-label="Alternar modo claro e escuro" title="Modo Claro / Escuro">
+                    <span class="icon-sun" aria-hidden="true">☀️</span>
+                    <span class="icon-moon" aria-hidden="true">🌙</span>
+                    <span class="action-label" id="theme-label">Escuro</span>
+                </button>
+
+                <button type="button" class="action-btn a11y-trigger" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-panel" title="Acessibilidade Inclusiva">
+                    <span aria-hidden="true">♿</span>
+                    <span class="action-label">Acessibilidade</span>
+                </button>
+
+                <button type="button" class="action-btn cart-trigger" id="cart-toggle" aria-label="Abrir sacola de compras">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-badge" id="cart-count">0</span>
+                    <span class="action-label">Sacola</span>
+                </button>
+            </div>
+        </div>
+
+        <nav class="category-nav" aria-label="Categorias de produtos">
+            <div class="container">
+                <ul class="nav-list" id="category-filters">
+                    <li><button class="nav-link active" data-category="todos">Todos os Produtos</button></li>
+                    <li><button class="nav-link" data-category="maquiagem">Maquiagem</button></li>
+                    <li><button class="nav-link" data-category="perfumaria">Perfumaria</button></li>
+                    <li><button class="nav-link" data-category="cabelos">Cabelos & Tranças</button></li>
+                    <li><button class="nav-link" data-category="skincare">Skincare & Corpo</button></li>
+                    <li><button class="nav-link highlight-bf" data-category="blackfriday">🔥 Ofertas Black Friday</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Espaço Exclusivo para Propaganda de Outra Marca (Moda Feminina) -->
+    <section class="partner-ad-banner" aria-label="Publicidade de Marca Parceira">
+        <div class="container">
+            <div class="ad-card">
+                <div class="ad-tag">PUBLICIDADE • PARCEIRO OFICIAL DE MODA</div>
+                <div class="ad-content">
+                    <div class="ad-brand-box">
+                        <span class="ad-logo-badge">LUMINA</span>
+                        <div>
+                            <h3>Atelier Lumina — Alta Costura &amp; Moda Feminina</h3>
+                            <p>Complete seu visual! Na compra de <strong>Vestidos Midi</strong> ou <strong>Conjuntos de Alfaiataria</strong>, ganhe 10% OFF extra na Produtos Ivone! <em>"Elegância que ilumina cada detalhe."</em></p>
+                        </div>
+                    </div>
+                    <div class="ad-cta-group">
+                        <button type="button" class="btn-ad" id="copy-partner-coupon" data-coupon="LUMINA10">Copiar Cupom: LUMINA10</button>
+                        <small id="coupon-feedback" class="coupon-msg" aria-live="polite"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Hero Black Friday Produtos Ivone -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="hero-eyebrow">EDIÇÃO LIMITADA • BLACK FRIDAY</span>
+                <h1>O Luxo que Até o Julius Aprova no Orçamento!</h1>
+                <p>Descubra a coleção oficial <strong>Produtos Ivone</strong>: fragrâncias marcantes, maquiagem de alta pigmentação e tratamentos capilares dignos da realeza do Brooklyn — com descontos reais de até 70%.</p>
+                <div class="hero-buttons">
+                    <a href="#catalogo" class="btn-primary">Ver Ofertas Black Friday</a>
+                    <button type="button" class="btn-secondary" id="open-virtual-consultant">Atendimento em Libras / Texto</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <a href="#catalogo" class="hero-promo-banner" aria-label="Oferta em Destaque Black Friday Produtos Ivone">
+                    <img src="assets/imgpropagandaprodivone.jpg" alt="Campanha Black Friday Produtos Ivone - Até 70% OFF">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corpo Principal do Sistema: Filtros, Ordenação e Vitrine de Produtos -->
+    <main id="catalogo" class="main-catalog container">
+        <div class="catalog-header">
+            <div>
+                <h2 id="catalog-title">Destaques Black Friday Ivone</h2>
+                <p class="catalog-subtitle" id="catalog-count">Exibindo 8 produtos exclusivos com desconto</p>
+            </div>
+            <div class="catalog-controls">
+                <label for="sort-select" class="sr-only">Ordenar por</label>
+                <select id="sort-select" class="sort-dropdown">
+                    <option value="featured">Mais Relevantes</option>
+                    <option value="price-asc">Menor Preço</option>
+                    <option value="price-desc">Maior Preço</option>
+                    <option value="discount">Maior Desconto (%)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grid de Produtos (Onde o JS injeta os cards) -->
+        <div class="products-grid" id="products-grid"></div>
+    </main>
+
+    <!-- Seção de Diferenciais -->
+    <section class="benefits-strip">
+        <div class="container benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🚚</span>
+                <div>
+                    <strong>Entrega Expressa</strong>
+                    <p>Enviamos para todo o Brasil com rastreio em tempo real.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💳</span>
+                <div>
+                    <strong>Até 10x Sem Juros</strong>
+                    <p>Ou 10% de desconto extra pagando via PIX instantâneo.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐰</span>
+                <div>
+                    <strong>Cruelty-Free & Vegano</strong>
+                    <p>Beleza consciente sem testes em animais.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">♿</span>
+                <div>
+                    <strong>Compra 100% Acessível</strong>
+                    <p>Suporte visual, filtros para daltonismo e chat silencioso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand-logo footer-logo">
+                    <span class="logo-crown">✦</span>
+                    <div class="logo-text">
+                        <strong>PRODUTOS IVONE</strong>
+                        <small>Cosméticos & Perfumaria Fina</small>
+                    </div>
+                </div>
+                <p class="footer-desc">Inspirado no icônico universo de <em>Todo Mundo Odeia o Chris</em>. Sofisticação, humor e preços que cabem no bolso da família inteira.</p>
+            </div>
+            <div>
+                <h4>Categorias</h4>
+                <ul>
+                    <li><a href="#catalogo" data-cat-link="maquiagem">Maquiagem</a></li>
+                    <li><a href="#catalogo" data-cat-link="perfumaria">Perfumaria</a></li>
+                    <li><a href="#catalogo" data-cat-link="cabelos">Cabelos & Tranças</a></li>
+                    <li><a href="#catalogo" data-cat-link="skincare">Skincare</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Atendimento Acessível</h4>
+                <ul>
+                    <li>Central 100% em Texto (Para Surdos e Mudos)</li>
+                    <li>Intérprete Virtual de Libras Integrado</li>
+                    <li>Alertas Visuais de Status de Pedido</li>
+                    <li>Seg a Sáb das 08h às 22h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 Produtos Ivone Cosméticos Ltda. Todos os direitos reservados. Projeto demonstrativo de E-commerce.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: DETALHES DO PRODUTO -->
+    <div class="modal-backdrop" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-prod-title" hidden>
+        <div class="modal-box product-modal-box">
+            <button type="button" class="modal-close" id="close-product-modal" aria-label="Fechar detalhes do produto">✕</button>
+            <div class="product-detail-layout">
+                <div class="product-gallery-col">
+                    <div class="featured-image-stage" id="featured-image-stage" title="Passe o mouse ou clique para ampliar">
+                        <span class="modal-bf-tag" id="modal-discount-badge">-50% OFF</span>
+                        <div class="featured-art-container" id="modal-main-image"></div>
+                        <button type="button" class="zoom-toggle-btn" id="toggle-zoom-btn">🔍 Ampliar Foto em Evidência</button>
+                    </div>
+                    <div class="thumbnail-strip" id="modal-thumbnails"></div>
+                </div>
+
+                <div class="product-info-col">
+                    <span class="modal-category-tag" id="modal-prod-category">MAQUIAGEM</span>
+                    <h2 id="modal-prod-title">Nome do Produto</h2>
+                    <div class="modal-rating">
+                        <span class="stars">★★★★★</span>
+                        <span id="modal-prod-reviews">(148 avaliações verificadas)</span>
+                    </div>
+
+                    <p class="modal-description" id="modal-prod-desc">Descrição completa do produto.</p>
+
+                    <div class="modal-price-card">
+                        <div class="bf-label-row">
+                            <span class="bf-pill">OFERTA BLACK FRIDAY</span>
+                            <span class="stock-pill">● Em estoque — Pronta entrega</span>
+                        </div>
+                        <div class="price-old">De <del id="modal-old-price">R$ 199,90</del></div>
+                        <div class="price-current">Por <strong id="modal-new-price">R$ 89,90</strong></div>
+                        <div class="price-installments" id="modal-installments">ou 6x de R$ 14,98 sem juros no cartão</div>
+                    </div>
+
+                    <div class="purchase-controls">
+                        <div class="qty-selector" aria-label="Quantidade">
+                            <button type="button" id="modal-qty-minus" aria-label="Diminuir quantidade">−</button>
+                            <input type="number" id="modal-qty-input" value="1" min="1" max="20" readonly aria-label="Quantidade selecionada">
+                            <button type="button" id="modal-qty-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <button type="button" class="btn-add-to-cart" id="modal-add-cart-btn">Adicionar à Sacola</button>
+                        <button type="button" class="btn-buy-now" id="modal-buy-now-btn">Comprar Agora</button>
+                    </div>
+
+                    <div class="mini-shipping-calc">
+                        <label for="modal-cep-input">Calcular prazo e taxa de entrega:</label>
+                        <div class="cep-row">
+                            <input type="text" id="modal-cep-input" placeholder="00000-000" maxlength="9">
+                            <button type="button" id="modal-calc-cep-btn">Calcular</button>
+                        </div>
+                        <div id="modal-cep-result" class="cep-result" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAVETA DO CARRINHO -->
+    <div class="drawer-backdrop" id="cart-drawer-backdrop" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Sacola de Compras" hidden>
+        <div class="drawer-header">
+            <h3>🛍️ Minha Sacola (<span id="drawer-item-count">0</span>)</h3>
+            <button type="button" class="modal-close" id="close-cart-drawer" aria-label="Fechar sacola">✕</button>
+        </div>
+
+        <div class="free-shipping-bar">
+            <p id="free-shipping-msg">Faltam <strong>R$ 99,00</strong> para ganhar <strong>FRETE GRÁTIS</strong>!</p>
+            <div class="progress-track">
+                <div class="progress-fill" id="free-shipping-progress" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="cart-items-container" id="cart-items-list"></div>
+
+        <div class="cart-footer" id="cart-footer">
+            <div class="coupon-box">
+                <input type="text" id="cart-coupon-input" placeholder="Cupom (ex: IVONE10 ou LUMINA10)">
+                <button type="button" id="apply-coupon-btn">Aplicar</button>
+            </div>
+            <div id="cart-coupon-status" class="coupon-status-text" aria-live="polite"></div>
+
+            <div class="cart-totals">
+                <div class="total-row">
+                    <span>Subtotal (sem desconto BF):</span>
+                    <span id="cart-original-subtotal">R$ 0,00</span>
+                </div>
+                <div class="total-row discount-row">
+                    <span>Economia Black Friday + Cupom:</span>
+                    <span id="cart-total-savings">- R$ 0,00</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Subtotal dos Produtos:</span>
+                    <strong id="cart-subtotal">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <button type="button" class="btn-checkout-start" id="proceed-to-checkout-btn">
+                Continuar para Entrega e Pagamento →
+            </button>
+        </div>
+    </aside>
+
+    <!-- MODAL DE CHECKOUT -->
+    <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+        <div class="modal-box checkout-modal-box">
+            <div class="checkout-header">
+                <h2 id="checkout-title">Finalizar Compra • Produtos Ivone</h2>
+                <button type="button" class="modal-close" id="close-checkout-modal" aria-label="Fechar checkout">✕</button>
+            </div>
+
+            <div class="checkout-stepper" role="tablist">
+                <div class="step active" id="step-indicator-1">1. Cadastro & Endereço</div>
+                <div class="step" id="step-indicator-2">2. Taxa de Entrega</div>
+                <div class="step" id="step-indicator-3">3. Pagamento</div>
+                <div class="step" id="step-indicator-4">4. Confirmação</div>
+            </div>
+
+            <div class="checkout-grid">
+                <div class="checkout-main-col">
+                    <form id="checkout-step-1" class="checkout-step-panel">
+                        <h3>Dados Pessoais e Endereço de Entrega</h3>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="cust-name">Nome Completo *</label>
+                                <input type="text" id="cust-name" required placeholder="Ex: Rochelle Rock">
+                            </div>
+                            <div class="form-group">
+                                <label for="cust-cpf">CPF *</label>
+                                <input type="text" id="cust-cpf" required placeholder="000.000.000-00" maxlength="14">
+                            </div>
+                            <div class="form-group">
+                                <label for="cust-email">E-mail para Rastreio *</label>
+                                <input type="email" id="cust-email" required placeholder="rochelle@bedstuy.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="cust-phone">WhatsApp / SMS *</label>
+                                <input type="tel" id="cust-phone" required placeholder="(11) 99999-9999" maxlength="15">
+                            </div>
+                        </div>
+
+                        <hr class="form-divider">
+
+                        <div class="form-grid-3">
+                            <div class="form-group">
+                                <label for="addr-cep">CEP *</label>
+                                <input type="text" id="addr-cep" required placeholder="01001-000" maxlength="9">
+                            </div>
+                            <div class="form-group span-2">
+                                <label for="addr-street">Rua / Avenida *</label>
+                                <input type="text" id="addr-street" required placeholder="Rua das Acácias">
+                            </div>
+                            <div class="form-group">
+                                <label for="addr-number">Número *</label>
+                                <input type="text" id="addr-number" required placeholder="123">
+                            </div>
+                            <div class="form-group">
+                                <label for="addr-neighborhood">Bairro *</label>
+                                <input type="text" id="addr-neighborhood" required placeholder="Centro">
+                            </div>
+                            <div class="form-group">
+                                <label for="addr-city">Cidade / UF *</label>
+                                <input type="text" id="addr-city" required placeholder="São Paulo - SP">
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button type="submit" class="btn-primary">Salvar Endereço e Escolher Frete →</button>
+                        </div>
+                    </form>
+
+                    <div id="checkout-step-2" class="checkout-step-panel" hidden>
+                        <h3>Escolha a Modalidade e Taxa de Entrega</h3>
+                        <p class="step-hint">Enviando para: <strong id="shipping-dest-preview"></strong></p>
+
+                        <div class="shipping-options-list">
+                            <label class="radio-card">
+                                <input type="radio" name="shippingMethod" value="economico" data-price="14.90" checked>
+                                <div class="radio-card-body">
+                                    <div>
+                                        <strong>Entrega Econômica</strong>
+                                        <span>Receba em 5 a 8 dias úteis</span>
+                                    </div>
+                                    <span class="shipping-price-tag" id="price-ship-economico">R$ 14,90</span>
+                                </div>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="shippingMethod" value="expressa" data-price="26.50">
+                                <div class="radio-card-body">
+                                    <div>
+                                        <strong>Entrega Expressa Ivone Jet</strong>
+                                        <span>Receba em 1 a 2 dias úteis</span>
+                                    </div>
+                                    <span class="shipping-price-tag">R$ 26,50</span>
+                                </div>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="shippingMethod" value="retirada" data-price="0">
+                                <div class="radio-card-body">
+                                    <div>
+                                        <strong>Retirar no Ponto Parceiro</strong>
+                                        <span>Disponível em 24h • Sem taxa</span>
+                                    </div>
+                                    <span class="shipping-price-tag free">GRÁTIS</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="step-actions">
+                            <button type="button" class="btn-secondary" id="back-to-step-1">← Voltar</button>
+                            <button type="button" class="btn-primary" id="go-to-step-3">Ir para Pagamento →</button>
+                        </div>
+                    </div>
+
+                    <div id="checkout-step-3" class="checkout-step-panel" hidden>
+                        <h3>Selecione o Método de Pagamento</h3>
+
+                        <div class="payment-tabs">
+                            <button type="button" class="pay-tab active" data-pay="pix">💠 PIX (10% OFF Extra)</button>
+                            <button type="button" class="pay-tab" data-pay="credit">💳 Cartão de Crédito</button>
+                            <button type="button" class="pay-tab" data-pay="boleto">📄 Boleto Bancário</button>
+                        </div>
+
+                        <div class="pay-content active" id="pay-panel-pix">
+                            <div class="pix-box">
+                                <div class="qr-sim">
+                                    <svg width="110" height="110" viewBox="0 0 100 100">
+                                        <rect width="100" height="100" fill="#fff"/>
+                                        <rect x="10" y="10" width="25" height="25" fill="#292326"/>
+                                        <rect x="65" y="10" width="25" height="25" fill="#292326"/>
+                                        <rect x="10" y="65" width="25" height="25" fill="#292326"/>
+                                        <rect x="45" y="20" width="10" height="10" fill="#641E32"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>Aprovação Imediata + 10% de Desconto Extra!</strong>
+                                    <p>Código PIX gerado na confirmação.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pay-content" id="pay-panel-credit" hidden>
+                            <div class="form-grid-2">
+                                <div class="form-group span-2">
+                                    <label for="cc-number">Número do Cartão</label>
+                                    <input type="text" id="cc-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cc-name">Nome no Cartão</label>
+                                    <input type="text" id="cc-name" placeholder="ROCHELLE ROCK">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cc-exp">Validade / CVV</label>
+                                    <div class="split-inputs">
+                                        <input type="text" id="cc-exp" placeholder="MM/AA" maxlength="5">
+                                        <input type="text" id="cc-cvv" placeholder="CVV" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="form-group span-2">
+                                    <label for="cc-installments">Parcelamento</label>
+                                    <select id="cc-installments"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pay-content" id="pay-panel-boleto" hidden>
+                            <div class="boleto-box">
+                                <strong>Boleto Bancário Registrado</strong>
+                                <p>Vencimento em 2 dias úteis.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button type="button" class="btn-secondary" id="back-to-step-2">← Voltar</button>
+                            <button type="button" class="btn-primary" id="confirm-order-btn">✓ Finalizar Pedido Agora</button>
+                        </div>
+                    </div>
+
+                    <div id="checkout-step-4" class="checkout-step-panel order-success-panel" hidden>
+                        <div class="success-icon">🎉</div>
+                        <h3>Pedido Realizado com Sucesso!</h3>
+                        <p class="order-number">Número do Pedido: <strong id="final-order-id">#IVN-202689</strong></p>
+                        <p>Obrigado por comprar na Produtos Ivone!</p>
+                        <button type="button" class="btn-primary" id="finish-and-reset-btn">Continuar Comprando</button>
+                    </div>
+                </div>
+
+                <aside class="checkout-summary-col">
+                    <h4>Resumo do Pedido</h4>
+                    <div id="checkout-items-mini" class="checkout-items-mini"></div>
+                    <div class="summary-lines">
+                        <div class="s-line"><span>Produtos:</span><span id="chk-subtotal">R$ 0,00</span></div>
+                        <div class="s-line"><span>Taxa de Entrega:</span><span id="chk-shipping">R$ 14,90</span></div>
+                        <div class="s-line discount" id="chk-pix-discount-row"><span>Desconto PIX (10%):</span><span id="chk-pix-discount">- R$ 0,00</span></div>
+                        <div class="s-line total"><span>Total a Pagar:</span><strong id="chk-grand-total">R$ 0,00</strong></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAINEL DE ACESSIBILIDADE -->
+    <aside class="a11y-panel" id="a11y-panel" role="dialog" aria-label="Central de Acessibilidade" hidden>
+        <div class="a11y-header">
+            <h3>♿ Acessibilidade Inclusiva</h3>
+            <button type="button" id="close-a11y-panel" aria-label="Fechar">✕</button>
+        </div>
+        <div class="a11y-section">
+            <h4>👁️ Daltonismo</h4>
+            <div class="a11y-btn-grid">
+                <button type="button" class="cb-btn active" data-cb="none">Padrão</button>
+                <button type="button" class="cb-btn" data-cb="protanopia">Protanopia</button>
+                <button type="button" class="cb-btn" data-cb="deuteranopia">Deuteranopia</button>
+                <button type="button" class="cb-btn" data-cb="tritanopia">Tritanopia</button>
+            </div>
+        </div>
+        <div class="a11y-section">
+            <h4>🤟 Surdos e Mudos</h4>
+            <label class="switch-row">
+                <span>Intérprete Virtual de Libras</span>
+                <input type="checkbox" id="libras-widget-toggle">
+            </label>
+            <button type="button" class="btn-chat-deaf" id="open-silent-chat-btn">💬 Abrir Chat em Texto</button>
+        </div>
+        <div class="a11y-section">
+            <h4>🔠 Fonte</h4>
+            <div class="font-controls">
+                <button type="button" id="font-decrease">A−</button>
+                <button type="button" id="font-reset">Normal</button>
+                <button type="button" id="font-increase">A+</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="libras-floating-box" id="libras-floating-box" hidden>
+        <div class="libras-header">
+            <span>🤟 Intérprete Libras</span>
+            <button type="button" id="close-libras-box">✕</button>
+        </div>
+        <div class="libras-avatar-stage">
+            <div class="libras-hand-anim">🤟</div>
+            <p id="libras-caption-text">Passe o mouse ou clique em qualquer produto.</p>
+        </div>
+    </div>
+
+    <div class="silent-chat-box" id="silent-chat-box" hidden>
+        <div class="chat-header">
+            <span>💬 Atendimento Escrito Ivone</span>
+            <button type="button" id="close-silent-chat">✕</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="msg bot">Olá! Como podemos ajudar?</div>
+        </div>
+        <div class="chat-quick-replies">
+            <button type="button" class="quick-q" data-q="Qual o prazo de entrega?">Prazo de entrega?</button>
+            <button type="button" class="quick-q" data-q="Como funciona o desconto Black Friday?">Desconto Black Friday?</button>
+        </div>
+        <form class="chat-input-form" id="silent-chat-form">
+            <input type="text" id="silent-chat-input" placeholder="Digite sua mensagem..." required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Toast de Notificação Visual -->
+    <div class="visual-toast-container" id="toast-container" aria-live="assertive"></div>
+
+    <!-- LINK OBRIGATÓRIO PARA O JAVASCRIPT FUNCIONAR -->
+    <script src="js/app.js"></script>
+</body>
+</html>
