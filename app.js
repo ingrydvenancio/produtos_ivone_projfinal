@@ -48,7 +48,7 @@ const PRODUCTS = [
     {
         id: 4,
         image: "assets/livininprodivone.jpeg",
-        name: "Leave-in Capilar Brilho de Salão Ivone Silk",
+        name: "Leave-in Capilar Brilho de Salão Ivone Silk(por Ingryd)",
         category: "cabelos",
         categoryLabel: "Cabelos & Tranças",
         oldPrice: 119.90,
@@ -62,7 +62,7 @@ const PRODUCTS = [
     {
         id: 5,
         image: "assets/paletadesombraprodivone.jpeg",
-        name: "Paleta de Sombras Diva Dourada 6 Cores",
+        name: "Paleta de Sombras Diva Dourada 6 Cores(Por Eduarda)",
         category: "maquiagem",
         categoryLabel: "Maquiagem",
         oldPrice: 139.90,
@@ -76,7 +76,7 @@ const PRODUCTS = [
     {
         id: 6,
         image: "assets/kitprodivonebaunilha.jpeg",
-        name: "Kit Body Splash Baunilha 200ml",
+        name: "Kit Body Splash Baunilha 200ml(por Eduarda)",
         category: "perfumaria",
         categoryLabel: "Perfumaria Fina",
         oldPrice: 89.90,
@@ -90,7 +90,7 @@ const PRODUCTS = [
     {
         id: 7,
         image: "assets/mascarahidratacaoprodivone.jpeg",
-        name: "Máscara Reconstrutora Tranças & Cachos 300g",
+        name: "Máscara Reconstrutora Tranças & Cachos 300g(por Ingryd)",
         category: "cabelos",
         categoryLabel: "Cabelos & Tranças",
         oldPrice: 99.90,
@@ -104,7 +104,7 @@ const PRODUCTS = [
     {
         id: 8,
         image: "assets/kitprodivone3perfumes.jpg",
-        name: "Kit Perfumes Produtos Ivone Corpo & Colo Ouro Rosé",
+        name: "Kit Perfumes Produtos Ivone Corpo & Colo Ouro Rosé(Por Breno)",
         category: "skincare",
         categoryLabel: "Skincare & Corpo",
         oldPrice: 129.90,
