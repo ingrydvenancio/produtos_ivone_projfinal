@@ -6,7 +6,7 @@ const PRODUCTS = [
     {
         id: 1,
         image: "assets/kitprodivone_linha1.jpg",
-        name: "Kit creme e bodysplash Ivone Nuit de Bed-Stuy 100ml",
+        name: "Kit creme e bodysplash Ivone Nuit de Bed-Stuy 100ml(por Eduarda,gerada por IA Generativa)",
         category: "perfumaria",
         categoryLabel: "Perfumaria Fina",
         oldPrice: 249.90,
@@ -20,7 +20,7 @@ const PRODUCTS = [
     {
         id: 2,
         image: "assets/kitfacialprodivone.jpeg",
-        name: "Kit facial produtos Ivone",
+        name: "Kit facial produtos Ivone(por Eduarda, gerada por IA Generativa)",
         category: "maquiagem",
         categoryLabel: "Maquiagem",
         oldPrice: 69.90,
@@ -34,7 +34,7 @@ const PRODUCTS = [
     {
         id: 3,
         image: "assets/perfumeprodivone.jpeg",
-        name: "Perfume Elegância da Rochelle 60g",
+        name: "Perfume Elegância da Rochelle 60g (Por Ingryd, gerada por IA Generativa)",
         category: "skincare",
         categoryLabel: "Skincare & Corpo",
         oldPrice: 159.90,
